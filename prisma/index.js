@@ -7,3 +7,14 @@ const prisma = new PrismaClient ();
 
 app.use(bodyParser.json());
 
+app.post ('/users',async (req, res)=>{
+    const {name, email} = req.body;
+    const user = await prisma.user.create({
+        data: {
+            name,
+            email
+        }
+    });
+    res.json(user);
+});
+
