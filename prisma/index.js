@@ -32,3 +32,17 @@ app.get('/users', async (req, res) => {
     });
     res.json(user);
   });
+  app.put('/users/:id', async (req, res) => {
+    const { id } = req.params;
+    const { name, email } = req.body;
+    const user = await prisma.user.update({
+      where: {
+        id: parseInt(id),
+      },
+      data: {
+        name,
+        email
+      },
+    });
+    res.json(user);
+  });
