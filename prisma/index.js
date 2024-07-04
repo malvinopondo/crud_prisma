@@ -18,3 +18,8 @@ app.post ('/users',async (req, res)=>{
     res.json(user);
 });
 
+app.get('/users', async (req, res) => {
+    const users = await prisma.user.findMany();
+    res.json(users);
+  });
+
