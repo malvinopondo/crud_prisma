@@ -23,3 +23,12 @@ app.get('/users', async (req, res) => {
     res.json(users);
   });
 
+  app.get('/users/:id', async (req, res) => {
+    const { id } = req.params;
+    const user = await prisma.user.findUnique({
+      where: {
+        id: parseInt(id),
+      },
+    });
+    res.json(user);
+  });
